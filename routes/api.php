@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Admin\AdminAuth;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
@@ -20,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/admins', [AdminAuth::class, 'admins']);
         Route::post('/logout', [AdminAuth::class, 'logout']);
-        Route::post('/login', [AdminAuth::class, 'login']);
+      
 
         // categorys routes
         Route::get('/categorys', [CategoryController::class, 'index']);
@@ -35,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/posts', [PostController::class, 'index']);
         Route::post('/posts', [PostController::class, 'store']);
         Route::put('/posts/{id}', [PostController::class, 'edit']);
-        Route::post('/posts/{id}', [PostController::class, 'update']);
+        Route::post('/update', [PostController::class, 'update']);
         Route::delete('/posts/{id}', [PostController::class, 'delete']);
         Route::get('/posts/{search}', [PostController::class, 'search']);
 
@@ -56,7 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/comments/{id}', [CommentController::class, 'delete']);
     });
 });
-
+  Route::post('/login', [AdminAuth::class, 'login']);
 
 
 

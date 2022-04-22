@@ -102,7 +102,7 @@ class PostController extends Controller
             $posts = Post::findOrFail($id);
             return response()->json([
                 'success' => true,
-                'psots' => $posts
+                'posts' => $posts
             ]);
         } catch (Exception $e) {
             return response()->json([
@@ -112,12 +112,12 @@ class PostController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $posts = Post::findOrFail($id);
+            $posts = Post::findOrFail($request->id);
             $validation = Validator::make($request->all(), [
-                'title' => ['required', 'string', 'max:100', 'min:10', 'unique:posts'],
+                'title' => ['required', 'string', 'max:100', 'min:10'],
                 'description' => ['required', 'string', 'max:1000', 'min:10'],
                 'cat_id' => ['required'],
             ]);
